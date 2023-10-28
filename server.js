@@ -2,15 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const mongoUri = 'mongodb+srv://dbUser:dbUserPassword@cluster0.wsriqhq.mongodb.net/?retryWrites=true&w=majority'
 const PORT = 3000
+const db_name = 'Tanglay-Stones-Quotation_System'
+const mongoUri = `mongodb+srv://dbUser:dbUserPassword@cluster0.wsriqhq.mongodb.net/${db_name}?retryWrites=true&w=majority`
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const stoneRouter = require("./routers/stone")
-app.use('/', stoneRouter);
+app.use('/stone', stoneRouter);
 
 mongoose.connect(mongoUri, {useNewUrlParser: true})
 const con = mongoose.connection
