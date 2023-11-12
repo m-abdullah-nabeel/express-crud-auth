@@ -16,6 +16,8 @@ app.use('/stone', stoneRouter);
 mongoose.connect(mongoUri, {useNewUrlParser: true})
 const con = mongoose.connection
 
+con.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 con.on('open', ()=>{
     console.log("Connected to MongoDB!")
 })
